@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>ZeroMeds | Home </title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+
+</head>
+
+<body>
+  <app-root></app-root>
+
+
+  <!-- Js scripts -->
+  <!-- Template JavaScript -->
+
+
+  <!-- faq -->
+  <script>
+
+    const items = document.querySelectorAll(".accordion button");
+
+    function toggleAccordion() {
+      const itemToggle = this.getAttribute('aria-expanded');
+
+      for (i = 0; i < items.length; i++) {
+        items[i].setAttribute('aria-expanded', 'false');
+      }
+
+      if (itemToggle == 'false') {
+        this.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
+
+  </script>
+  <!-- //faq -->
+  <!-- MENU-JS -->
+  <!-- <script>
+    $(window).on("scroll", function () {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    }); -->
+  <!--
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    }); -->
+
+  </script>
+  <!-- //MENU-JS -->
+
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+
+    // $(function () {
+    //   $('.navbar-toggler').click(function () {
+    //     $('body').toggleClass('noscroll');
+    //   })
+    // });
+
+  </script>
+  <!-- //disable body scroll which navbar is in active -->
+
+  <!-- //bootstrap -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+
+</body>
+
+</html>
