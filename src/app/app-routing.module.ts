@@ -1,3 +1,5 @@
+import { LoginComponent } from './view/pages/login/login.component';
+import { FeedbacksComponent } from './view/pages/feedbacks/feedbacks.component';
 import { Title } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,6 +10,7 @@ import { AboutComponent } from './view/pages/about/about.component';
 import { ContactUsComponent } from './view/pages/contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './view/pages/privacy-policy/privacy-policy.component';
 import { TermsConditionComponent } from './view/pages/terms-condition/terms-condition.component';
+import { BlogsComponent } from './view/pages/blogs/blogs.component';
 const routes: Routes = [
   {
     path: '',
@@ -24,9 +27,16 @@ const routes: Routes = [
       },
       {
         path: 'contact', component: ContactUsComponent, data: { title: 'ZeroMeds | Contact Us' }
-
+      },
+      {
+        path: 'blogs', component: BlogsComponent, data: { title: 'ZeroMeds | Blogs' }
+      },
+      {
+        path: 'feedbacks', component: FeedbacksComponent, data: { title: 'ZeroMeds | Feedback' }
       },
     ]
+  }, {
+    path: 'login', component: LoginComponent, data: { title: 'ZeroMeds | Login' }
   },
   {
     path: 'privacy-policy', component: PrivacyPolicyComponent, data: { title: 'ZeroMeds | Privacy Policy' }

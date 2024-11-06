@@ -1,7 +1,10 @@
+import { AppStorage } from './../../../core/utilities/app-storage';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2'
+import { MasterService } from 'src/app/services/master.s';
+import { swalHelper } from 'src/app/core/constants/swal.helper';
 
 
 
@@ -13,24 +16,34 @@ import Swal from 'sweetalert2'
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private storage: AppStorage,
+    private service: MasterService
+
+  ) {
+    this.user = storage.get('user')
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      name: [this.user?.name.toUpperCase() || '', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      phone: ['', Validators.pattern('^(\\d{10})?$')],
+      email: [this.user?.email || '', [Validators.required, Validators.email]],
       message: ['', Validators.required],
     });
   }
 
   ngOnInit() {
+
   }
+
+  user: any
   contactForm: FormGroup;
   reset() {
     this.contactForm.setValue(
       {
-        name: '',
+        name: this.user?.name.toUpperCase() || '',
         phone: "",
-        email: "",
+        email: this.user?.email || "",
         message: "",
 
       }
@@ -38,23 +51,27 @@ export class ContactUsComponent implements OnInit {
 
   }
 
-  onSubmit = () => {
+  onSubmit = async () => {
+    console.log(this.contactForm);
+
     if (this.contactForm.valid) {
       let formData = this.contactForm.value;
+      let result = await this.service.saveContact(formData);
+      console.log(result);
+      if (result.Data != 0 && result.Data != null) {
+        this.reset()
+        this.contactForm.markAsUntouched();
+        return swalHelper.messageToast(result.Message, 'success')
+      }
+      else {
+        return swalHelper.messageToast(result.Message, 'warning')
+      }
 
+    }
+    else {
+      this.contactForm.markAllAsTouched();
 
-      let headers = { 'content-type': 'application/json' }
-      this.http.post('https://dhkkqrn8-3100.inc1.devtunnels.ms/api/retailers/contactus', formData).subscribe(
-        response => {
-          // console.log('Response:', response);
-          let res: any = response
-          if (res.data == 1) {
-            Swal.fire("Form is successfully submitted");
-            this.reset()
-          }
-
-        },
-      );
+      return swalHelper.messageToast('something is Wrong', 'warning')
     }
   }
 }

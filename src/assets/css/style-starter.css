@@ -21046,3 +21046,7 @@ p.vhny-para {
 
 /*--//w3l-footer-29-main--*/
 /*# sourceMappingURL=style-freedom.css.map */
+
+.ngx-pagination .current {
+  background: #578d35 !important;
+}

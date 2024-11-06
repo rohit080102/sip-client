@@ -19,8 +19,8 @@
 
         </a>
       </h1>
-      <a href="#" class="phone-btn btn btn-primary btn-style btn-sm   d-block d-lg-none  ms-md-5 p-md-3 p-2">
-        <span class="fa fa-user me-2"> </span>Login</a>
+      <!-- <a href="#" class="phone-btn btn btn-primary btn-style btn-sm   d-block d-lg-none  ms-md-5 p-md-3 p-2">
+        <span class="fa fa-user me-2"> </span>Login</a> -->
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
@@ -32,9 +32,11 @@
             <a class="nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"
               routerLink="">Home</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" routerLink="/about">About</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link " routerLinkActive="active" routerLink="/services">Services</a>
           </li>
@@ -43,19 +45,41 @@
             <a class="nav-link " routerLinkActive="active" routerLink="/contact">Contact</a>
           </li>
 
-        </ul>
-        <ul class="navbar-nav search-right mt-lg-0 mt-2">
-          <li class="nav-item me-lg-3">
-            <a href="#" class="phone-btn btn btn-primary btn-style d-none d-lg-block btn-style ms-2">
-              <span class="fa fa-user me-2"> </span>Login</a>
+          <li class="nav-item">
+            <a class="nav-link " routerLinkActive="active" routerLink="/blogs">Blogs</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link " routerLinkActive="active" routerLink="/feedbacks">Feedbacks</a>
+          </li>
+
         </ul>
 
+        <ul class="navbar-nav search-right mt-lg-0 mt-2">
+          <a href="/login" class="phone-btn btn btn-primary btn-style  d-lg-block btn-style ms-2" *ngIf="!user">
+            <span class="fa fa-user me-2"> </span>Login</a>
+          <li class="nav-item d-flex" title="USER">
+
+            <ul>
+
+
+              <li href="#search" class="nav-item pe-0" *ngIf="user">
+                <span class="nav-link" style="font-weight:700 ;cursor:pointer">{{user.name | uppercase}}</span>
+
+              </li>
+            </ul>
+
+
+
+          </li>
+          <i class="fa fa-sign-out-alt fa-lg " aria-hidden="true" data-bs-toggle="tooltip" title="Logout"
+            data-bs-placement="right" (click)="logout()" *ngIf="user"></i>
+        </ul>
 
         <!-- //toggle switch for light and dark theme -->
 
         <!-- search popup -->
-        <div id="search" class="w3lpop-overlay">
+        <!-- <div id="search" class="w3lpop-overlay">
           <div class="w3lpopup">
             <form action="#formsearch" method="GET" class="d-sm-flex">
               <input class="form-control me-2" type="search" placeholder="Search here..." aria-label="Search"
@@ -64,13 +88,13 @@
               <a class="close" href="#formsearch">&times;</a>
             </form>
           </div>
-        </div>
+        </div> -->
 
         <!-- /search popup -->
       </div>
 
       <!-- toggle switch for light and dark theme -->
-      <div class="mobile-position">
+      <!-- <div class="mobile-position">
 
         <nav class="navigation">
 
@@ -85,8 +109,10 @@
             </label>
           </div>
         </nav>
-      </div>
+      </div> -->
       <!-- //toggle switch for light and dark theme -->
     </nav>
   </div>
 </header>
+
+<script src="assets/js/bootstrap.min.js"></script>

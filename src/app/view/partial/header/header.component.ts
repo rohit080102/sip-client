@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-declare var $: any;
+import { AppStorage } from 'src/app/core/utilities/app-storage';
+// declare var $: any;
 
 
 @Component({
@@ -10,18 +11,42 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private storage: AppStorage
+  ) {
+    this.checkLogin();
 
   }
 
   ngOnInit() {
     this.url = this.router.url
     this.initializeTheme();
+    this.onWindowResize();
+    this.checkLogin();
+
 
   }
+
+
   default = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  }
+
+  user: any;
+  checkLogin = async () => {
+    this.user = this.storage.get('user')
+    return this.user
+
+  }
+
+  logout() {
+    this.user = ''
+    localStorage.clear()
+    window.location.reload();
+    console.log(this.user);
+
   }
 
   url: any = ''
@@ -38,23 +63,37 @@ export class HeaderComponent implements OnInit {
       }
     }
 
-    toggleSwitch.addEventListener('change', this.switchTheme.bind(this), false);
+    // toggleSwitch.addEventListener('change', this.switchTheme.bind(this), false);
   }
 
-  switchTheme = (event: Event): void => {
-    const target = event.target as HTMLInputElement;
+  // switchTheme = (event: Event): void => {
+  //   const target = event.target as HTMLInputElement;
 
-    if (target.checked) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-      this.theme = true
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-      this.theme = false
+  //   if (target.checked) {
+  //     document.documentElement.setAttribute('data-theme', 'dark');
+  //     localStorage.setItem('theme', 'dark');
+  //     this.theme = true
+  //   } else {
+  //     document.documentElement.setAttribute('data-theme', 'light');
+  //     localStorage.setItem('theme', 'light');
+  //     this.theme = false
+  //   }
+  //   console.log(this.theme)
+
+  // }
+
+  headerActive = false;
+
+
+  toggleHeader() {
+    this.headerActive = !this.headerActive;
+  }
+
+  @HostListener('window:resize', [])
+  onWindowResize() {
+    if (window.innerWidth > 991) {
+      this.headerActive = false;
     }
-    console.log(this.theme)
-
   }
 
 

@@ -1,0 +1,47 @@
+<div class="container d-flex align-items-center justify-content-center vh-100" *ngIf="toggle">
+  <div class="p-4 border-light" style="max-width: 400px; width: 100%;">
+    <h2 class="text-center mb-4 title-w3l ">Login</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit('login')">
+      <div class="mb-3">
+        <label for="loginEmail" class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="mb-3">
+        <label for="loginPassword" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password"
+          placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+    <p class="text-center mt-3">
+      Don’t have an account? <a href="/login" (click)="this.toggle = !this.toggle">Register</a>
+    </p>
+  </div>
+</div>
+
+
+
+<div class="container d-flex align-items-center justify-content-center vh-100" *ngIf="!toggle">
+  <div class="p-4" style="max-width: 400px; width: 100%;">
+    <h2 class="text-center mb-4">Register</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit('register')">
+      <div class="mb-3">
+        <label for="registerName" class="form-label">Name</label>
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <label for="registerEmail" class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="mb-3">
+        <label for="registerPassword" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password"
+          placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+    <p class="text-center mt-3">
+      Already have an account? <a href="/login" (click)="this.toggle = !this.toggle">Login</a>
+    </p>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { LoginComponent } from './view/pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 
@@ -12,6 +13,9 @@ import { CommonModule } from '@angular/common';
 import { AboutComponent } from './view/pages/about/about.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BlogsComponent } from './view/pages/blogs/blogs.component';
+import { FeedbacksComponent } from './view/pages/feedbacks/feedbacks.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -26,6 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     AboutComponent,
     ContactUsComponent,
+    BlogsComponent,
+    FeedbacksComponent,
+    LoginComponent
 
 
 
@@ -36,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
 
 
   ],

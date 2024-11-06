@@ -39,8 +39,9 @@
 
   </script>
   <!-- //faq -->
+
   <!-- MENU-JS -->
-  <!-- <script>
+  <script>
     $(window).on("scroll", function () {
       var scroll = $(window).scrollTop();
 
@@ -49,8 +50,8 @@
       } else {
         $("#site-header").removeClass("nav-fixed");
       }
-    }); -->
-  <!--
+    });
+
     //Main navigation Active Class Add Remove
     $(".navbar-toggler").on("click", function () {
       $("header").toggleClass("active");
@@ -64,10 +65,25 @@
           $("header").removeClass("active");
         }
       });
-    }); -->
+    });
 
   </script>
   <!-- //MENU-JS -->
+
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+
+  </script>
+
+  <!-- Template JavaScript -->
+  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <!-- <script src="assets/js/theme-change.js"></script> -->
+  <script src="assets/js/jquery-1.9.1.min.js"></script>
 
   <!-- disable body scroll which navbar is in active -->
   <script>
@@ -82,11 +98,15 @@
   <!-- //disable body scroll which navbar is in active -->
 
   <!-- //bootstrap -->
+  <!-- <script src="assets/js/bootstrap.min.js"></script> -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
     </script>
+
+
+
 
 
 </body>
